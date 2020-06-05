@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import AlbumList from './AlbumList'
+
 function App() {
   return (
     <div className="App">
@@ -12,6 +14,9 @@ function App() {
           <li>Basket</li>
         </ul>
       </div>
+
+      <AlbumList />
+
       <div className="main">
         <div className="newReleases">
           <a>New Releases</a>
