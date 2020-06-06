@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import Header from './Header';
+import Search from './components/SearchBar';
 import * as actions from './components/AlbumList';
 
 class Home extends Component {
@@ -12,6 +14,11 @@ class Home extends Component {
       albums  : item
     }));
   }
+  searchAlbums = (term) => {
+    actions.getAlbums(term).then(item => this.setState({
+      albums  : item
+    }))
+  }
   renderAlbums = () => {
       const {albums} = this.state;
       return albums && albums.length ?
@@ -20,9 +27,9 @@ class Home extends Component {
             <div className="card border-danger">
               <img src={item.album.cover_big} alt="" className="card-img-top"/>
               <div className="card-body">
-                <span className="text-primary">Eminem</span>
+                <span className="text-primary">{item.artist.name}</span>
                 <div className="card-title">
-                  album title
+                  {item.album.title}
                 </div>
               </div>
               <div className="card-footer">
@@ -41,18 +48,12 @@ class Home extends Component {
     console.log(this.state);
     return (
       <div className="App">
-        <div className="navbar">
-          <ul className="navItems">
-            <li>Home</li>
-            <li>MusicStoreLogo</li>
-            <li>Basket</li>
-          </ul>
-        </div>
-  
-        
-  
         <div className="main">
-          <div className="newReleases">
+          
+          <Header />
+          <Search searchAlbums={this.searchAlbums} />
+
+          <div className="row">
             {this.renderAlbums()}
           </div>
   
