@@ -14,7 +14,12 @@ class Albums extends Component {
             albums  : item
         }));
     }
-
+    addToFavourites = (album) => {
+        let oldFavourites = localStorage.getItem('favourites') || [];
+        oldFavourites.push(album);
+        let favourites = oldFavourites;
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+    }
     searchAlbums = (term) => {
         actions.getAlbums(term).then(item => this.setState({
             albums : item
@@ -32,6 +37,7 @@ class Albums extends Component {
                     <div className="card-title">
                         {item.album.title}
                         <Link className="a" to={`/albumDetails/${item.album.id}`}>Go To Album</Link>
+                        <a onClick={() => this.addToFavourites(item)} href="#" className="link"><i className="fas fa-star text-danger"></i></a>
                     </div>
                 </div>
                 <div className="card-footer">
