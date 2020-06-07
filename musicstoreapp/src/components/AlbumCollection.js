@@ -2,48 +2,18 @@ import React, { Component } from 'react';
 import '../App.css';
 import * as actions from '../AlbumList';
 import {Link} from 'react-router-dom';
-import SearchBar from './SearchBar';
-import swal from 'sweetalert';
+import Header from './Header';
 
-class Albums extends Component {
+class Collection extends Component {
     state = {
         albums:[]
     } 
     
     componentDidMount(){
-        actions.getAlbums().then(item => this.setState({
-            albums  : item
-        }));
-    }
-    addToFavourites = (album) => {
-        let oldFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
-        if(this.checkAlbum(oldFavourites,album)){
-            swal({
-                title : 'Album exists!',
-                text : 'This album is already in your collection',
-                icon : 'warning'
-            });
-            return false;
-        }
-        oldFavourites.push(album);
-        let favourites = oldFavourites;
-        localStorage.setItem('favourites', JSON.stringify(favourites));
-        swal({
-            title : 'Album added!',
-            text : 'This album has been added to your collection',
-            icon : 'success'
-        });
-    }
-    checkAlbum = (albums,album) => {
-        let found = albums.some(function(item){
-            return item.album.id === album.album.id;
-        });
-        return found;
-    }
-    searchAlbums = (term) => {
-        actions.getAlbums(term).then(item => this.setState({
-            albums : item
-        }))
+        let favourites = actions.getFavouritesAlbums();
+        this.setState({
+            albums : JSON.parse(favourites)
+        })
     }
     renderAlbums = () => {
         const {albums} = this.state;
@@ -73,7 +43,7 @@ class Albums extends Component {
             <div className="container">
                 <div className="row mt-4">
                     <div className="col-md-10 mx-auto">
-                        <SearchBar searchAlbums={this.searchAlbums} />
+                        <Header />
                         <div className="row">
                             {this.renderAlbums()}
                         </div>
@@ -85,4 +55,4 @@ class Albums extends Component {
 }
     
 
-export default Albums;
+export default Collection;
