@@ -35,8 +35,11 @@ class Albums extends Component {
             </div>
         ))
         : null;
-      }
     }
-
+    render(){
+        {this.renderAlbums()}
+    }
+}
+    
 
 export default Albums;

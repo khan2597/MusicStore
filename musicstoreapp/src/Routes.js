@@ -1,19 +1,15 @@
-import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import React, { Component } from 'react';
+import {Switch,Route} from 'react-router-dom';
+import App from './App'
+import AlbumDetails from './components/AlbumDetails'
 
-/**
- * Import all page components here
- */
-import App from './App';
-import AlbumPage from './components/AlbumPage';
+const Routes = () => {
+  return(
+    <Switch>
+      <Route path="/" exact component={App} />
+      <Route path="/details/:id" exact component={AlbumDetails} />
+    </Switch>
+  )
+}
 
-/**
- * All routes go here.
- * Don't forget to import the components above after adding new route.
- */
-export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={App} />
-    <Route path="/albumPage" component={AlbumPage} />
-  </Route>
-);
+export default Routes;
