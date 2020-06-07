@@ -20,7 +20,6 @@ class Albums extends Component {
             albums : item
         }))
     }
-
     renderAlbums = () => {
         const {albums} = this.state;
         return albums && albums.length ?

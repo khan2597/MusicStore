@@ -15,6 +15,19 @@ class AlbumDetails extends Component {
             })
         });
     }
+    renderTracks = () => {
+        const {tracks} = this.state;
+        return tracks && tracks.length ? 
+            tracks.map((track,index)=> (
+                <figure key={index} className="figure">
+                    <figcaption className="figure-caption text-xs-right">Listen to {track.title}</figcaption>
+                    <audio controls src={track.preview}>
+                    </audio>
+                </figure>
+            ))
+            :
+            null;
+        }
 
     renderAlbum = () => {
         const {album} = this.state;
@@ -27,6 +40,9 @@ class AlbumDetails extends Component {
                     <div className="card-title">
                         {album.title}
                     </div>
+                </div>
+                <div className="card-footer">
+                    {this.renderTracks()}
                 </div>
             </div>
             </div>
