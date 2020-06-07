@@ -7,6 +7,7 @@ class Search extends Component{
     handleInputChange = (event) => {
         this.setState({term : event.target.value})
     }
+
     submitSearch = (event) => {
         event.preventDefault();
         let {term} = this.state;

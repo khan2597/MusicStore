@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
-import * as actions from './AlbumList';
+import * as actions from '../AlbumList';
+import {Link} from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 class Albums extends Component {
     state = {
@@ -12,6 +14,13 @@ class Albums extends Component {
             albums  : item
         }));
     }
+
+    searchAlbums = (term) => {
+        actions.getAlbums(term).then(item => this.setState({
+            albums : item
+        }))
+    }
+
     renderAlbums = () => {
         const {albums} = this.state;
         return albums && albums.length ?
@@ -20,16 +29,14 @@ class Albums extends Component {
             <div className="card border-danger">
                 <img src={item.album.cover_big} alt="" className="card-img-top"/>
                 <div className="card-body">
-                <span className="text-primary">Eminem</span>
-                <div className="card-title">
-                {item.album.title}
-                </div>
+                    <span className="text-primary">{item.artist.name}</span>
+                    <div className="card-title">
+                        {item.album.title}
+                        <Link className="a" to={`/albumDetails/${item.album.id}`}>Go To Album</Link>
+                    </div>
                 </div>
                 <div className="card-footer">
-                <div className="links">
-                    <a href="#"><i className="fas fa-info text-danger"></i></a>
-                    <a href="#"><i className="fas fa-star text-danger"></i></a>
-                </div>
+                    
                 </div>
             </div>
             </div>
@@ -37,7 +44,18 @@ class Albums extends Component {
         : null;
     }
     render(){
-        {this.renderAlbums()}
+        return(
+            <div className="container">
+                <div className="row mt-4">
+                    <div className="col-md-10 mx-auto">
+                        <SearchBar searchAlbums={this.searchAlbums} />
+                        <div className="row">
+                            {this.renderAlbums()}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
     }
 }
     

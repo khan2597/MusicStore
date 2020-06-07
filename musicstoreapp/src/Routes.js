@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
-import {Switch,Route} from 'react-router-dom';
-import App from './App'
-import AlbumDetails from './components/AlbumDetails'
+import React from 'react';
+import {Switch, Route} from 'react-router-dom';
+import App from './components/App';
+import { Router } from "react-router";
+import SearchPage from './components/SearchPage';
 
 const Routes = () => {
   return(
-    <Switch>
-      <Route path="/" exact component={App} />
-      <Route path="/details/:id" exact component={AlbumDetails} />
-    </Switch>
+    <Router>
+      <Switch>
+        <Route exact path="/"  component={App} />
+        <Route exact path="/SearchPage" component={SearchPage} />
+      </Switch>
+    </Router>
   )
 }
 
