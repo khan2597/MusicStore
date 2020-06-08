@@ -44,6 +44,7 @@ class Collection extends Component {
                 <div className="row mt-4">
                     <div className="col-md-10 mx-auto">
                         <Header />
+                        <div>My Collection</div>
                         <div className="row">
                             {this.renderAlbums()}
                         </div>

@@ -36,7 +36,7 @@ class AlbumDetails extends Component {
             <div className="card border-danger">
                 <img src={album.cover_big} alt="" className="card-img-top"/>
                 <div className="card-body">
-                    <span className="text-primary">{album.release_date}</span>
+                    <span className="text-primary">Album release date: {album.release_date}</span>
                     <div className="card-title">
                         {album.title}
                     </div>

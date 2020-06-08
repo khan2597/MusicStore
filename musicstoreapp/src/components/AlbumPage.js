@@ -4,6 +4,7 @@ import * as actions from '../AlbumList';
 import {Link} from 'react-router-dom';
 import SearchBar from './SearchBar';
 import swal from 'sweetalert';
+import Header from './Header';
 
 class Albums extends Component {
     state = {
@@ -53,12 +54,12 @@ class Albums extends Component {
             <div className="card border-danger">
                 <img src={item.album.cover_big} alt="" className="card-img-top"/>
                 <div className="card-body">
-                    <span className="text-primary">{item.artist.name}</span>
+                    <h5 className="text-primary">{item.artist.name}</h5>
                     <div className="card-title">
                         {item.album.title}
-                        <Link className="a" to={`/albumDetails/${item.album.id}`}>Go To Album</Link>
-                        <a onClick={() => this.addToFavourites(item)} href="#" className="link"><i className="fas fa-star text-danger"></i></a>
                     </div>
+                    <Link className="captionText goToAlbum" to={`/albumDetails/${item.album.id}`}>Go To Album</Link>
+                    <button className="favouriteButton" onClick={() => this.addToFavourites(item)} href="#">Add to favourites</button>
                 </div>
                 <div className="card-footer">
                     
@@ -73,6 +74,7 @@ class Albums extends Component {
             <div className="container">
                 <div className="row mt-4">
                     <div className="col-md-10 mx-auto">
+                        <Header />
                         <SearchBar searchAlbums={this.searchAlbums} />
                         <div className="row">
                             {this.renderAlbums()}

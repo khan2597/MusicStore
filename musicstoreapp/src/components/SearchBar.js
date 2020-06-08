@@ -29,8 +29,7 @@ class Search extends Component{
                         </div>
                         <div className="col-md-2">
                             <div className="form-group">
-                                <button type="submit" className="btn btn-danger">
-                                    <i className="fas fa-search"></i>
+                                <button type="submit" className="submitButton">Search
                                 </button>
                             </div>
                         </div>
