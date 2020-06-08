@@ -59,7 +59,7 @@ class Albums extends Component {
                         {item.album.title}
                     </div>
                     <Link className="captionText goToAlbum" to={`/albumDetails/${item.album.id}`}>Go To Album</Link>
-                    <button className="favouriteButton" onClick={() => this.addToFavourites(item)} href="#">Add to favourites</button>
+                    <button className="favouriteButton" onClick={() => this.addToFavourites(item)} href="#">Add to Collection</button>
                 </div>
                 <div className="card-footer">
                     
